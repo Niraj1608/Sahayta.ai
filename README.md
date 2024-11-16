@@ -45,9 +45,12 @@ View our detection results in `detectFloodVictims/runs/detect/train`
 ![val_batch0_labels](detectFloodVictims/runs/detect/train/confusion_matrix_normalized.png)
 
 ### Wildfire Detection Performance
+
 ![confusion_matrix](assets/wildfire/confusion_mat.png)
 
 ### Flood Segmentation Results
+
+![val_batch0_labels](assets/floods/output_flood_segmentation.png)
 
 
 ## 🛠️ Quick Start Guide
