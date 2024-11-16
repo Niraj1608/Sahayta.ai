@@ -32,8 +32,11 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Predictive Analytics**: Weather-location correlation for risk assessment
 
 ![Sahayta Logo](assets/output/api.png)
+
 ![Sahayta Logo](assets/output/output3.png)
+
 ![alt text](assets/output/victims1.png)
+
 ![alt text](assets/output/victims2.png)
 
 ## 📊 Performance Results
