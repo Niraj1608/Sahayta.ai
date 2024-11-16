@@ -1,7 +1,7 @@
 # Sahayta.ai - Smart Relief
 ### *Transforming Disaster Response Through AI*
 
-![Sahayta Logo](assets/output/output.png)
+![Sahayta Logo](assets/output/homepage.png)
 
 ## 🎯 Overview
 Sahayta.ai is a cutting-edge disaster relief and response solution that harnesses the power of advanced technology to revolutionize disaster management. Our system integrates satellite imagery analysis, drone-based surveillance, and AI-driven algorithms to enhance emergency response during floods, wildfires, and other natural disasters.
@@ -18,7 +18,7 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **High-Resolution Imaging**: Real-time aerial surveillance
 - **Swift Search & Rescue**: Rapid victim localization in flood-affected areas
 
-![Sahayta Logo](assets/output/output2.png)
+![Sahayta Logo](assets/output/mission.png)
 
 ### 3. AI-Powered Flood Analysis
 - **Semantic Segmentation**: Advanced satellite imagery analysis
@@ -31,7 +31,13 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Animal Welfare Protection**: Tracking and rescue coordination
 - **Predictive Analytics**: Weather-location correlation for risk assessment
 
+![Sahayta Logo](assets/output/api.png)
+
 ![Sahayta Logo](assets/output/output3.png)
+
+![alt text](assets/output/victims1.png)
+
+![alt text](assets/output/victims2.png)
 
 ## 📊 Performance Results
 
@@ -45,6 +51,7 @@ View our detection results in `detectFloodVictims/runs/detect/train`
 
 ### Flood Segmentation Results
 ![output_flood](detectWildFire/results.png)
+
 
 ## 🛠️ Quick Start Guide
 
