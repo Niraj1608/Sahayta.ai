@@ -13,9 +13,7 @@ The solution approach can be summarized as follows:
 
 3. **Flood Detection and segmentation from Satellite Imagery** AI techniques are applied for data analysis and decision support, including semantic segmentation of satellite imagery,and optimization of resource allocation. These algorithms provide actionable insights to emergency responders and relief agencies, aiding in strategic planning and response coordination.
 
-4. **Location Tracking and Mapping for Animal Rescue** The system utilizes geolocation data to track and map areas where animals are at risk or need assistance. By integrating location-based APIs, it identifies high-risk zones and stranded animals during emergencies. Semantic segmentation and real-time mapping enable precise identification of animal movement patterns, aiding in efficient rescue planning and resource allocation. These insights are vital for locating animals in remote or urban areas, ensuring timely intervention.
-
-5. **Weather Monitoring for Animal Welfare**  Weather APIs provide real-time updates on conditions such as temperature, rainfall, and storms, which are critical for animal safety. The system predicts potential threats like heatwaves or floods and sends timely alerts to caregivers and rescue teams. By correlating weather data with location insights, it helps anticipate the impact on wildlife and domestic animals, enabling preemptive measures and ensuring their well-being during extreme weather conditions.
+4. **Integrated Location and Weather Intelligence for Emergency Response and Welfare"** The system integrates geolocation data and real-time weather updates to support animal rescue and welfare. It identifies high-risk zones, tracks animal movements, and uses spatial data analysis for efficient resource allocation. Weather APIs provide updates on conditions like storms and floods, enabling risk prediction by correlating weather and location data. This approach empowers rescue teams with actionable insights for timely interventions, ensuring animal safety during emergencies.
 
 
 ## Results
@@ -32,7 +30,7 @@ results in detectFloodVictims/runs/detect/train
 ![confusion_matrix](assets/wildfire/confusion_mat.png)
 
 # Flood Segmenation
-![output_flood_segmentation] (detectWildFire/confusion_mat.png)
+
 ![output_flood](detectWildFire/results.png)
 
 ## Getting Started
