@@ -1,4 +1,4 @@
-# Sahayta 🤝 
+# Sahayta.ai
 # Empowering Disaster Relief Through Technology
 
 ## Overview
