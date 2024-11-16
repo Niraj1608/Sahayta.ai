@@ -49,6 +49,7 @@ View our detection results in `detectFloodVictims/runs/detect/train`
 ### Flood Segmentation Results
 ![output_flood](detectWildFire/results.png)
 
+
 ## 🛠️ Quick Start Guide
 
 ### Online Demo
