@@ -17,6 +17,7 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Advanced Computer Vision**: Implements YOLOv8 algorithms
 - **High-Resolution Imaging**: Real-time aerial surveillance
 - **Swift Search & Rescue**: Rapid victim localization in flood-affected areas
+  
 ![alt text](assets/output/victims1.png)
 
 ### 3. AI-Powered Flood Analysis
