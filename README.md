@@ -12,6 +12,8 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Satellite Integration**: Leverages NOAA-20 VIIRS satellite imagery
 - **Real-time Monitoring**: Early detection and alert system
 - **Rapid Response**: Immediate notification to disaster relief teams
+- **Model**: Pretrained RESNET101 (with Transfer Learning to improve performance) -
+- **Accuracy**: Achieved 90.5% in identifying wildfire occurrences.
 
 ![output_flood](detectWildFire/results.png)
 
@@ -27,7 +29,7 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Semantic Segmentation**: Advanced satellite imagery analysis
 - **Resource Optimization**: Data-driven decision support
 - **Strategic Planning**: Actionable insights for emergency responders
-
+- **Model** : U-NET Deep Learning Model
 ![alt text](detectFloodVictims/victim_det_output.jpeg)
 
 ### 4. Integrated Emergency Response System
@@ -58,7 +60,7 @@ View our detection results in `detectFloodVictims/runs/detect/train`
 ## 🛠️ Quick Start Guide
 
 ### Online Demo
-Try our Flood Victim Detection model: [Live Demo](https://nepec3kih4bktgprzszr5p.streamlit.app/)
+Try our Flood Victim Detection model: [Live Demo](https://sahayta-ai.streamlit.app/)
 
 ### Local Installation
 
@@ -77,6 +79,7 @@ Try our Flood Victim Detection model: [Live Demo](https://nepec3kih4bktgprzszr5p
      ```bash
      streamlit run app.py
      ```
+    - Get Your ROBOFLOW_API_KEY from https://universe.roboflow.com/ 
    - Check Flood Detection and Wildfire results using provided scripts
    - Find Flood Segmentation outputs in `./Flood_mapping`
 
