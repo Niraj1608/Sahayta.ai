@@ -1,60 +1,100 @@
-# Sahayta 🤝 
-# Empowering Disaster Relief Through Technology
+# Sahayta.ai - Smart Relief
+### *Transforming Disaster Response Through AI*
 
-## Overview
-This repository contains the codebase and documentation for a disaster relief and response solution aimed at leveraging advanced technology to enhance disaster management efforts, particularly during events like floods and wildfires. The solution integrates satellite imagery analysis, drone-based victim detection, and AI-driven algorithms to improve situational awareness, resource allocation, and response coordination.
-
-## Solution Approach
-The solution approach can be summarized as follows:
-
-1. **Detect WildFires in Early stages from Satellite Images** The solution utilizes satellite imagery, particularly NOAA-20 satellites called VIIRS, for detection of Wildfires in early stages so that Disaster Relief teams can be sent the information before, expeding Disaster Relief.
-
-2. **Drone-Based Victim Detection in Floods:** Drones equipped with high-resolution cameras are deployed for aerial imagery capture and victim detection in disaster-affected areas. Computer vision algorithms like YOLOv8 analyze drone imagery to identify and localize individuals in need of assistance, facilitating swift search and rescue operations.
-
-3. **Flood Detection and segmentation from Satellite Imagery** AI techniques are applied for data analysis and decision support, including semantic segmentation of satellite imagery,and optimization of resource allocation. These algorithms provide actionable insights to emergency responders and relief agencies, aiding in strategic planning and response coordination.
-
-4. **Location Tracking and Mapping for Animal Rescue** The system utilizes geolocation data to track and map areas where animals are at risk or need assistance. By integrating location-based APIs, it identifies high-risk zones and stranded animals during emergencies. Semantic segmentation and real-time mapping enable precise identification of animal movement patterns, aiding in efficient rescue planning and resource allocation. These insights are vital for locating animals in remote or urban areas, ensuring timely intervention.
-
-5. **Weather Monitoring for Animal Welfare**  Weather APIs provide real-time updates on conditions such as temperature, rainfall, and storms, which are critical for animal safety. The system predicts potential threats like heatwaves or floods and sends timely alerts to caregivers and rescue teams. By correlating weather data with location insights, it helps anticipate the impact on wildlife and domestic animals, enabling preemptive measures and ensuring their well-being during extreme weather conditions.
-
-
-## Results
 ![Sahayta Logo](assets/output/output.png)
+
+## 🎯 Overview
+Sahayta.ai is a cutting-edge disaster relief and response solution that harnesses the power of advanced technology to revolutionize disaster management. Our system integrates satellite imagery analysis, drone-based surveillance, and AI-driven algorithms to enhance emergency response during floods, wildfires, and other natural disasters.
+
+## 🚀 Key Features
+
+### 1. Early-Stage Wildfire Detection
+- **Satellite Integration**: Leverages NOAA-20 VIIRS satellite imagery
+- **Real-time Monitoring**: Early detection and alert system
+- **Rapid Response**: Immediate notification to disaster relief teams
+
+### 2. Drone-Based Victim Detection
+- **Advanced Computer Vision**: Implements YOLOv8 algorithms
+- **High-Resolution Imaging**: Real-time aerial surveillance
+- **Swift Search & Rescue**: Rapid victim localization in flood-affected areas
 
 ![Sahayta Logo](assets/output/output2.png)
 
+### 3. AI-Powered Flood Analysis
+- **Semantic Segmentation**: Advanced satellite imagery analysis
+- **Resource Optimization**: Data-driven decision support
+- **Strategic Planning**: Actionable insights for emergency responders
+
+### 4. Integrated Emergency Response System
+- **Real-time Weather Updates**: Dynamic weather condition monitoring
+- **Geolocation Integration**: High-risk zone identification
+- **Animal Welfare Protection**: Tracking and rescue coordination
+- **Predictive Analytics**: Weather-location correlation for risk assessment
+
 ![Sahayta Logo](assets/output/output3.png)
-# Victim Detection 
-results in detectFloodVictims/runs/detect/train
+
+## 📊 Performance Results
+
+### Victim Detection Analysis
+View our detection results in `detectFloodVictims/runs/detect/train`
 
 ![val_batch0_labels](detectFloodVictims/runs/detect/train/confusion_matrix_normalized.png)
 
+### Wildfire Detection Performance
 ![confusion_matrix](assets/wildfire/confusion_mat.png)
 
-# Flood Segmenation
-![output_flood_segmentation] (detectWildFire/confusion_mat.png)
+### Flood Segmentation Results
 ![output_flood](detectWildFire/results.png)
 
-## Getting Started
-To use the disaster relief and response solution, follow these steps:
-# Use deployed app to check Flood Victim Detection model: https://nepec3kih4bktgprzszr5p.streamlit.app/
+## 🛠️ Quick Start Guide
 
-# Run it in your local machine:
-1. Clone the repository to your local machine: `git clone https://github.com/your-username/disaster-relief-solution.git`
-2. Install the necessary dependencies and libraries as specified in the documentation.
-3. Install requirements for streamlit app
-`pip install -r requirements.txt`
-4. Set up the environment and configure the solution parameters according to your requirements.
-5. To Check results for Victim Detection in Floods
-` streamlit run app.py`
-6. To check Results for Flood Detection and Segmentation and Wildfire detection, Run the provided scripts and modules to execute the solution components, analyze data, and generate insights.
-7. Output images from Flood Segmentation model training is saved in `./Flood_mapping` 
+### Online Demo
+Try our Flood Victim Detection model: [Live Demo](https://nepec3kih4bktgprzszr5p.streamlit.app/)
 
-## License
+### Local Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/disaster-relief-solution.git
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Launch Applications**
+   - For Flood Victim Detection:
+     ```bash
+     streamlit run app.py
+     ```
+   - Check Flood Detection and Wildfire results using provided scripts
+   - Find Flood Segmentation outputs in `./Flood_mapping`
+
+## 📚 Documentation
+Detailed documentation available in the `docs/` directory covering:
+- System architecture
+- API documentation
+- Model specifications
+- Deployment guides
+- Usage tutorials
+
+## 📄 License
 This project is licensed under the [MIT License](LICENSE).
 
-## Acknowledgments
-We would like to acknowledge the contributions of the open-source community and the support of our partners and collaborators in developing and testing this disaster relief and response solution. Thank you for your support!
+## 🙏 Acknowledgments
+We extend our gratitude to:
+- The open-source community
+- Our development partners
+- Collaborators and testers
 
 ---
-**Note:** This README file provides an overview of the disaster relief and response solution and serves as a starting point for understanding the project structure and functionality. For detailed instructions and documentation, please refer to the files in the `docs/` directory.
+
+<div align="center">
+
+**Sahayta.ai - Smart Relief**  
+*Technology that saves lives*
+
+[Documentation](docs/) | [Report Issues](issues/) | [Contribute](CONTRIBUTING.md)
+
+</div>
