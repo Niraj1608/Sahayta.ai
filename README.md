@@ -1,5 +1,6 @@
-# Sahayta.ai-Helping Hands
-# Empowering Disaster Relief Through Technology
+# Sahayta.ai - Smart Relief
+"
+# Transforming Disaster Response Through AI
 
 ## Overview
 This repository contains the codebase and documentation for a disaster relief and response solution aimed at leveraging advanced technology to enhance disaster management efforts, particularly during events like floods and wildfires. The solution integrates satellite imagery analysis, drone-based victim detection, and AI-driven algorithms to improve situational awareness, resource allocation, and response coordination.
