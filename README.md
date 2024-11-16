@@ -1,7 +1,7 @@
 # Sahayta.ai - Smart Relief
 ### *Transforming Disaster Response Through AI*
 
-![Sahayta Logo](assets/output/output.png)
+![Sahayta Logo](assets/output/homepage.png)
 
 ## 🎯 Overview
 Sahayta.ai is a cutting-edge disaster relief and response solution that harnesses the power of advanced technology to revolutionize disaster management. Our system integrates satellite imagery analysis, drone-based surveillance, and AI-driven algorithms to enhance emergency response during floods, wildfires, and other natural disasters.
@@ -13,17 +13,22 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Real-time Monitoring**: Early detection and alert system
 - **Rapid Response**: Immediate notification to disaster relief teams
 
+![output_flood](detectWildFire/results.png)
+
+
 ### 2. Drone-Based Victim Detection
 - **Advanced Computer Vision**: Implements YOLOv8 algorithms
 - **High-Resolution Imaging**: Real-time aerial surveillance
 - **Swift Search & Rescue**: Rapid victim localization in flood-affected areas
-
-![Sahayta Logo](assets/output/output2.png)
+  
+![alt text](assets/output/victims1.png)
 
 ### 3. AI-Powered Flood Analysis
 - **Semantic Segmentation**: Advanced satellite imagery analysis
 - **Resource Optimization**: Data-driven decision support
 - **Strategic Planning**: Actionable insights for emergency responders
+
+![alt text](detectFloodVictims/victim_det_output.jpeg)
 
 ### 4. Integrated Emergency Response System
 - **Real-time Weather Updates**: Dynamic weather condition monitoring
@@ -31,7 +36,8 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Animal Welfare Protection**: Tracking and rescue coordination
 - **Predictive Analytics**: Weather-location correlation for risk assessment
 
-![Sahayta Logo](assets/output/output3.png)
+![Sahayta Logo](assets/output/api.png)
+
 
 ## 📊 Performance Results
 
@@ -41,10 +47,13 @@ View our detection results in `detectFloodVictims/runs/detect/train`
 ![val_batch0_labels](detectFloodVictims/runs/detect/train/confusion_matrix_normalized.png)
 
 ### Wildfire Detection Performance
+
 ![confusion_matrix](assets/wildfire/confusion_mat.png)
 
 ### Flood Segmentation Results
-![output_flood](detectWildFire/results.png)
+
+![val_batch0_labels](assets/floods/output_flood_segmentation.png)
+
 
 ## 🛠️ Quick Start Guide
 
@@ -82,13 +91,6 @@ Detailed documentation available in the `docs/` directory covering:
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
-We extend our gratitude to:
-- The open-source community
-- Our development partners
-- Collaborators and testers
-
----
 
 <div align="center">
 
