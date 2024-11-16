@@ -13,6 +13,9 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Real-time Monitoring**: Early detection and alert system
 - **Rapid Response**: Immediate notification to disaster relief teams
 
+![output_flood](detectWildFire/results.png)
+
+
 ### 2. Drone-Based Victim Detection
 - **Advanced Computer Vision**: Implements YOLOv8 algorithms
 - **High-Resolution Imaging**: Real-time aerial surveillance
@@ -45,7 +48,6 @@ View our detection results in `detectFloodVictims/runs/detect/train`
 ![confusion_matrix](assets/wildfire/confusion_mat.png)
 
 ### Flood Segmentation Results
-![output_flood](detectWildFire/results.png)
 
 
 ## 🛠️ Quick Start Guide
