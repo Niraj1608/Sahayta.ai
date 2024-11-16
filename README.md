@@ -1,4 +1,4 @@
-# Sahayta.ai-Helping Hands of Technology
+# Sahayta.ai-Helping Hands
 # Empowering Disaster Relief Through Technology
 
 ## Overview
