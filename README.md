@@ -37,7 +37,7 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 
 ![alt text](assets/output/victims1.png)
 
-![alt text](assets/output/victims2.png)
+![alt](assets/output/victims2.png)
 
 ## 📊 Performance Results
 
