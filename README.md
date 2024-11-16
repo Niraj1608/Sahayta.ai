@@ -89,13 +89,6 @@ Detailed documentation available in the `docs/` directory covering:
 ## 📄 License
 This project is licensed under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
-We extend our gratitude to:
-- The open-source community
-- Our development partners
-- Collaborators and testers
-
----
 
 <div align="center">
 
