@@ -292,8 +292,8 @@ def main():
     # Header Section with animation
     st.markdown("""
         <div class="header-container">
-            <div class="header-title">Sahayta 🤝</div>
-            <div class="header-subtitle">Empowering Disaster Relief Through Technology</div>
+            <div class="header-title"> Sahayta.ai </div>
+            <div class="header-subtitle">Transforming Disaster Response Through AI</div>
         </div>
     """, unsafe_allow_html=True)
     
