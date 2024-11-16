@@ -28,6 +28,8 @@ Sahayta.ai is a cutting-edge disaster relief and response solution that harnesse
 - **Resource Optimization**: Data-driven decision support
 - **Strategic Planning**: Actionable insights for emergency responders
 
+![alt text](detectFloodVictims/victim_det_output.jpeg)
+
 ### 4. Integrated Emergency Response System
 - **Real-time Weather Updates**: Dynamic weather condition monitoring
 - **Geolocation Integration**: High-risk zone identification
