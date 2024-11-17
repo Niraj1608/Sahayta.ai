@@ -1,102 +1,168 @@
 # Sahayta.ai - Smart Relief
-### *Transforming Disaster Response Through AI*
+## *Transforming Disaster Response Through AI*
 
-![Sahayta Logo](assets/output/homepage.png)
+![Sahayta.ai Header](https://gist.githubusercontent.com/Niraj1608/306bc495d9b2815ecc313714e35a3752/raw/sahayta-header.svg)
 
-## 🎯 Overview
-Sahayta.ai is a cutting-edge disaster relief and response solution that harnesses the power of advanced technology to revolutionize disaster management. Our system integrates satellite imagery analysis, drone-based surveillance, and AI-driven algorithms to enhance emergency response during floods, wildfires, and other natural disasters.
+[![Python](https://img.shields.io/badge/Python-3.12%2B-blue)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange)](https://tensorflow.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red)](https://pytorch.org/)
 
-## 🚀 Key Features
+## Inspiration
+Natural disasters strike without warning, leaving communities vulnerable and emergency responders racing against time. We were deeply moved by recent catastrophic events where delayed response times led to preventable losses. This inspired us to leverage cutting-edge AI technology to revolutionize disaster management and potentially save countless lives.
 
-### 1. Early-Stage Wildfire Detection
-- **Satellite Integration**: Leverages NOAA-20 VIIRS satellite imagery
-- **Real-time Monitoring**: Early detection and alert system
-- **Rapid Response**: Immediate notification to disaster relief teams
+## What it does
+Sahayta.ai is a comprehensive disaster management solution that combines multiple AI-powered systems:
 
-![output_flood](detectWildFire/results.png)
+### 1. Early-Stage Wildfire Detection 
+- Analyzes NOAA-20 VIIRS satellite imagery in real-time
+- Achieves 90.5% accuracy using transfer-learned RESNET101
+- Provides immediate alerts to emergency response teams
 
+### 2. Drone-Based Victim Detection 
+- Implements YOLOv8 for real-time human detection
+- Enables swift aerial search and rescue operations
+- Processes high-resolution imagery for accurate victim localization
 
-### 2. Drone-Based Victim Detection
-- **Advanced Computer Vision**: Implements YOLOv8 algorithms
-- **High-Resolution Imaging**: Real-time aerial surveillance
-- **Swift Search & Rescue**: Rapid victim localization in flood-affected areas
-  
-![alt text](assets/output/victims1.png)
+### 3. AI-Powered Flood Analysis 
+- Performs semantic segmentation using U-NET architecture
+- Maps flood-affected areas for resource optimization
+- Generates actionable insights for emergency responders
 
-### 3. AI-Powered Flood Analysis
-- **Semantic Segmentation**: Advanced satellite imagery analysis
-- **Resource Optimization**: Data-driven decision support
-- **Strategic Planning**: Actionable insights for emergency responders
+### 4. Integrated Emergency Response System 
+- Monitors real-time weather conditions
+- Identifies high-risk zones through geolocation
+- Includes animal welfare protection features
+- Predicts risk levels using weather-location correlation
 
-![alt text](detectFloodVictims/victim_det_output.jpeg)
+## How we built it
 
-### 4. Integrated Emergency Response System
-- **Real-time Weather Updates**: Dynamic weather condition monitoring
-- **Geolocation Integration**: High-risk zone identification
-- **Animal Welfare Protection**: Tracking and rescue coordination
-- **Predictive Analytics**: Weather-location correlation for risk assessment
+### 1. Data Collection & Preprocessing 
+- Gathered satellite imagery from NOAA-20 VIIRS
+- Created custom datasets for victim detection
+- Preprocessed flood mapping data for segmentation
 
-![Sahayta Logo](assets/output/api.png)
+### 2. Model Development 
+- Implemented transfer learning on RESNET101 for wildfire detection
+- Trained YOLOv8 for human detection in aerial imagery
+- Developed U-NET architecture for flood segmentation
 
+### 3. Integration & Deployment 
+- Built API endpoints for real-time data processing
+- Created Streamlit-based web interface
+- Implemented cloud-based processing pipeline
 
-## 📊 Performance Results
+## Technical Architecture & ML Pipeline
 
-### Victim Detection Analysis
-View our detection results in `detectFloodVictims/runs/detect/train`
+![Sahayta.ai ML Architecture](https://gist.githubusercontent.com/Niraj1608/9c489d70166c180644df36fb92151dc3/raw/bea955bd9e45d1a27b8b633a8ff75729b4287963/mlmodel.svg)
 
-![val_batch0_labels](detectFloodVictims/runs/detect/train/confusion_matrix_normalized.png)
+Our intelligent disaster response system leverages three specialized ML models working in parallel:
 
-### Wildfire Detection Performance
+### Model Architecture
 
-![confusion_matrix](assets/wildfire/confusion_mat.png)
+1. **Wildfire Detection Using RESNET101**
+   - Transfer learning on NOAA-20 VIIRS satellite imagery
+   - 90.5% detection accuracy in varied conditions
+   - Real-time monitoring and early warning system
+   - Custom-tuned for different terrain types
 
-### Flood Segmentation Results
+2. **Victim Detection with YOLOv8**
+   - Real-time processing of drone footage
+   - High-precision human detection in disaster zones
+   - Optimized for aerial viewpoints
+   - Low-latency for immediate response
 
-![val_batch0_labels](assets/floods/output_flood_segmentation.png)
+3. **Flood Analysis via U-NET**
+   - Advanced semantic segmentation
+   - Precise mapping of flood-affected regions
+   - Resource allocation optimization
+   - Real-time flood progression tracking
 
+### Data Pipeline
 
-## 🛠️ Quick Start Guide
+- **Input Sources:**
+  - Satellite imagery (NOAA-20 VIIRS)
+  - Real-time drone feeds
+  - Semantic mapping data
+  - Weather and terrain information
 
-### Online Demo
-Try our Flood Victim Detection model: [Live Demo](https://nepec3kih4bktgprzszr5p.streamlit.app/)
+- **Processing Layer:**
+  - Parallel processing of multiple data streams
+  - GPU-accelerated inference
+  - Edge computing integration
+  - Automated alert generation
 
-### Local Installation
+- **Output Systems:**
+  - Emergency alert distribution
+  - Risk zone visualization
+  - Resource optimization engine
+  - Real-time situation dashboard
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-username/disaster-relief-solution.git
-   ```
+This integrated approach enables swift, accurate disaster response while optimizing resource allocation for maximum impact.
 
-2. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Challenges we ran into 
 
-3. **Launch Applications**
-   - For Flood Victim Detection:
-     ```bash
-     streamlit run app.py
-     ```
-   - Check Flood Detection and Wildfire results using provided scripts
-   - Find Flood Segmentation outputs in `./Flood_mapping`
+### Technical Challenges
+- Processing large satellite imagery datasets
+- Optimizing model performance for real-time detection
+- Handling varying weather and lighting conditions
 
-## 📚 Documentation
-Detailed documentation available in the `docs/` directory covering:
-- System architecture
-- API documentation
-- Model specifications
-- Deployment guides
-- Usage tutorials
+### Integration Challenges
+- Combining multiple AI models into a unified system
+- Ensuring reliable real-time performance
+- Managing computational resources efficiently
 
-## 📄 License
-This project is licensed under the [MIT License](LICENSE).
+## Accomplishments that we're proud of 
+- Achieved 90.5% accuracy in wildfire detection
+- Successfully implemented real-time victim detection system
+- Created a user-friendly interface for emergency responders
+- Developed a scalable and integrated solution
+- Built a working prototype within the hackathon timeframe
 
+## What we learned 
+- Advanced computer vision techniques for disaster management
+- Real-time processing of satellite imagery
+- Integration of multiple AI models
+- Importance of user-centric design in emergency response systems
+- Collaborative problem-solving under time constraints
 
+## Social Impact
+1. Life-Saving Potential
+2. Community Resilience
+3. Environmental Protection
+4. Economic Benefits
+5. Long-term Sustainability
+
+## What's next for Sahayta.ai 
+
+### Technical Enhancements
+- Implement edge computing for faster processing
+- Expand to additional disaster types
+- Improve model accuracy through additional training
+
+### Feature Additions
+- Mobile app development for field teams
+- Integration with existing emergency response systems
+- Multi-language support for global deployment
+
+### Scaling & Deployment
+- Partner with disaster management agencies
+- Pilot programs in high-risk areas
+- Open-source community development
+
+## Built With
+- python
+- tensorflow
+- pytorch
+- streamlit
+- yolo
+- opencv
+- machine-learning
+- artificial-intelligence
+- computer-vision
+- deep-learning
+
+---
 <div align="center">
-
-**Sahayta.ai - Smart Relief**  
-*Technology that saves lives*
-
-[Documentation](docs/) | [Report Issues](issues/) | [Contribute](CONTRIBUTING.md)
-
+  <h3>Built with ❤️ by Team Sahayta</h3>
+  <p>Technology that saves lives</p>
 </div>
