@@ -214,7 +214,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def get_weather(city_name):
-    API_KEY = "e061703dc9d41c49b01e2c033f342c84"
+    api_key = st.secrets["weather"]["api_key"]
+
     base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}&units=metric"
     response = requests.get(base_url)
     return response.json() if response.status_code == 200 else None
