@@ -216,7 +216,7 @@ st.markdown("""
 def get_weather(city_name):
     api_key = st.secrets["weather"]["api_key"]
 
-    base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}&units=metric"
+    base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric"
     response = requests.get(base_url)
     return response.json() if response.status_code == 200 else None
 
