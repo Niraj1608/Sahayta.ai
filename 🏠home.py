@@ -411,7 +411,7 @@ def main():
                 </div>
             </div>
             <p style="text-align: center; margin-top: 1.5rem; color: #64748b;">
-                Last updated: %s
+               
             </p>
         </div>
     """, unsafe_allow_html=True)
