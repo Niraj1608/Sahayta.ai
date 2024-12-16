@@ -410,9 +410,7 @@ def main():
                     <p>Data refreshes every 30 minutes</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: #64748b;">
-               
-            </p>
+            
         </div>
     """, unsafe_allow_html=True)
 
