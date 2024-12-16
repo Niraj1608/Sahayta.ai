@@ -311,29 +311,7 @@ def main():
     """)
     st.divider()
 
-    # About Section - Now always visible with animation
-    st.markdown("""
-        <div class="about-section">
-            <div class="about-card">
-                <h2>🎯 Our Mission</h2>
-                <p>Enhancing disaster relief through cutting-edge technology</p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                        <h3>🛰️ Real-time Analysis</h3>
-                        <p>Satellite imagery processing</p>
-                    </div>
-                    <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                        <h3>🗺️ Geospatial Data</h3>
-                        <p>Advanced mapping integration</p>
-                    </div>
-                    <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
-                        <h3>📊 Data Processing</h3>
-                        <p>Environmental monitoring</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    """, unsafe_allow_html=True)
+    
 
     # Main content area
     col1, col2 = st.columns([1, 1])
@@ -436,7 +414,7 @@ def main():
                 Last updated: %s
             </p>
         </div>
-    """ % datetime.now().strftime("%Y-%m-%d %H:%M:%S"), unsafe_allow_html=True)
+    
 
 if __name__ == "__main__":
     main()
