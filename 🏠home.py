@@ -309,7 +309,7 @@ def main():
     - **Actionable Insights:** Inform disaster relief teams to plan and respond effectively.
     - **Technology-Driven:** Utilize advanced Deep Learning techniques for accurate predictions.
     """)
-    st.divider()
+   
 
     
 
