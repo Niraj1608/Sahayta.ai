@@ -6,20 +6,17 @@ from datetime import datetime
 
 # Page Configuration
 st.set_page_config(
-    page_title="Sahayta.ai - Dark Mode",
-    page_icon="🌙",
+    page_title="home",
+    page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded"
+    
 )
 
-# Dark Theme CSS
+# Modern and Animated CSS
 st.markdown("""
     <style>
-    /* Dark Mode Global Styles */
-    body, .stApp {
-        background-color: #121212 !important;
-        color: #e0e0e0;
-    }
+
     
     /* Main container styling */
     .main > div {
@@ -27,54 +24,52 @@ st.markdown("""
         max-width: 1200px;
         margin: 0 auto;
         font-family: 'Inter', sans-serif;
-        background-color: #1E1E1E;
     }
     
-    /* Card styling with dark background */
+    /* Card styling with subtle shadow */
     .stCard {
-        background-color: #2C2C2C;
+        background-color: white;
         padding: 1.5rem;
         border-radius: 15px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         margin-bottom: 1.5rem;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-        border: 1px solid #3C3C3C;
     }
     
     .stCard:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.4), 0 3px 6px -1px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 6px -1px rgba(0, 0, 0, 0.06);
     }
     
-    /* Header styling with dark gradient */
+    /* Header styling with vibrant gradient */
     .header-container {
         text-align: center;
         padding: 3rem 0;
-        background: linear-gradient(135deg, #1A1A2E, #16213E);
-        color: #E94560;
+        background: linear-gradient(135deg, #00B4DB, #0083B0);
+        color: white;
         border-radius: 15px;
         margin-bottom: 2rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     
     .header-title {
         font-size: 3rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: #E94560;
+        color: white;
         animation: fadeInDown 0.8s ease-out;
     }
     
     .header-subtitle {
         font-size: 1.2rem;
         opacity: 0.9;
-        color: #7E7E7E;
+        color: white;
         animation: fadeInUp 0.8s ease-out;
     }
     
     /* About section styling */
     .about-section {
-        background: linear-gradient(135deg, #1E1E2E, #16213E);
+        background: linear-gradient(135deg, #f6f9fc, #f1f4f8);
         padding: 2rem;
         border-radius: 15px;
         margin-bottom: 2rem;
@@ -82,24 +77,22 @@ st.markdown("""
     }
     
     .about-card {
-        background: #2C2C3C;
+        background: white;
         padding: 1.5rem;
         border-radius: 12px;
         margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         animation: fadeIn 0.8s ease-out;
-        border: 1px solid #3C3C4C;
     }
     
     /* Metric styling */
     .metric-container {
-        background-color: #2C2C3C;
+        background-color: white;
         padding: 1.2rem;
         border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         margin-bottom: 0.8rem;
         transition: transform 0.2s ease;
-        border: 1px solid #3C3C4C;
     }
     
     .metric-container:hover {
@@ -108,7 +101,7 @@ st.markdown("""
     
     .metric-label {
         font-size: 0.9rem;
-        color: #9E9E9E;
+        color: #64748b;
         margin-bottom: 0.25rem;
         font-weight: 500;
     }
@@ -116,99 +109,49 @@ st.markdown("""
     .metric-value {
         font-size: 1.5rem;
         font-weight: 600;
-        color: #E94560;
+        color: #0083B0;
     }
     
     /* Button styling */
     .stButton>button {
-        background: linear-gradient(135deg, #0F3460, #16213E);
-        color: #E94560;
+        background: linear-gradient(135deg, #00B4DB, #0083B0);
+        color: white;
         border-radius: 8px;
         padding: 0.6rem 1.2rem;
-        border: 1px solid #3C3C4C;
+        border: none;
         width: 100%;
         font-weight: 500;
         transition: all 0.3s ease;
     }
     
     .stButton>button:hover {
-        background: linear-gradient(135deg, #16213E, #0F3460);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #0083B0, #00B4DB);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         transform: translateY(-1px);
     }
     
     /* Input field styling */
     .stTextInput>div>div>input {
         border-radius: 8px;
-        border: 2px solid #3C3C4C;
-        background-color: #2C2C3C;
-        color: #E0E0E0;
+        border: 2px solid #e2e8f0;
         padding: 0.6rem;
         transition: border-color 0.2s ease;
     }
     
     .stTextInput>div>div>input:focus {
-        border-color: #E94560;
-        box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.1);
+        border-color: #00B4DB;
+        box-shadow: 0 0 0 2px rgba(0, 180, 219, 0.1);
     }
     
     /* Footer styling */
     .footer {
-        background: linear-gradient(135deg, #1E1E2E, #16213E);
+        background: linear-gradient(135deg, #f6f9fc, #f1f4f8);
         padding: 2rem;
         border-radius: 15px;
         margin-top: 2rem;
-        border: 1px solid #3C3C4C;
     }
     
-    /* Divider styling */
-    .stDivider {
-        border-top: 1px solid #3C3C4C;
-    }
-    
-    /* Success message styling */
-    .element-container:has(.stSuccess) div {
-        background-color: #2E7D32 !important;
-        color: #FFFFFF !important;
-        border-radius: 8px;
-        animation: slideIn 0.5s ease-out;
-    }
-
-    /* Info message styling */
-    .element-container:has(.stInfo) div {
-        background-color: #1565C0 !important;
-        color: #FFFFFF !important;
-        border-radius: 8px;
-        animation: slideIn 0.5s ease-out;
-    }
-
-    /* Warning message styling */
-    .element-container:has(.stWarning) div {
-        background-color: #F57C00 !important;
-        color: #FFFFFF !important;
-        border-radius: 8px;
-        animation: slideIn 0.5s ease-out;
-    }
-
-    /* Scrollbar styling for dark mode */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: #2C2C2C;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background: #E94560;
-        border-radius: 5px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-        background: #0F3460;
-    }
-
-    /* Animations (same as before) */
+    /* Animations */
     @keyframes fadeInDown {
         from {
             opacity: 0;
@@ -246,10 +189,30 @@ st.markdown("""
         from { opacity: 0; }
         to { opacity: 1; }
     }
+
+    /* Success message styling */
+    .element-container:has(.stSuccess) div {
+        background-color: #10B981 !important;
+        border-radius: 8px;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    /* Info message styling */
+    .element-container:has(.stInfo) div {
+        background-color: #0083B0 !important;
+        border-radius: 8px;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    /* Warning message styling */
+    .element-container:has(.stWarning) div {
+        background-color: #F59E0B !important;
+        border-radius: 8px;
+        animation: slideIn 0.5s ease-out;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# All other functions remain the same as in the original script
 def get_weather(city_name):
     api_key = st.secrets["weather"]["api_key"]
 
@@ -295,7 +258,7 @@ def generate_map(start_coords, end_coords=None):
                 }],
                 get_source_position=["start_lon", "start_lat"],
                 get_target_position=["end_lon", "end_lat"],
-                get_color=[233, 69, 96],  # Updated to match dark theme accent color
+                get_color=[52, 152, 219],
                 width_scale=2,
                 width_min_pixels=3,
             )
@@ -322,7 +285,7 @@ def generate_map(start_coords, end_coords=None):
     return pdk.Deck(
         layers=layers,
         initial_view_state=view_state,
-        map_style="dark",  # Changed to dark map style
+        map_style="light",
         tooltip={"text": "Location"},
     )
 
@@ -352,20 +315,20 @@ def main():
     st.markdown("""
         <div class="about-section">
             <div class="about-card">
-                <h2 style="color: #E94560;">🎯 Our Mission</h2>
-                <p style="color: #9E9E9E;">Enhancing disaster relief through cutting-edge technology</p>
+                <h2>🎯 Our Mission</h2>
+                <p>Enhancing disaster relief through cutting-edge technology</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                    <div style="padding: 1rem; background: #2C2C3C; border-radius: 8px; border: 1px solid #3C3C4C;">
-                        <h3 style="color: #E94560;">🛰️ Real-time Analysis</h3>
-                        <p style="color: #9E9E9E;">Satellite imagery processing</p>
+                    <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
+                        <h3>🛰️ Real-time Analysis</h3>
+                        <p>Satellite imagery processing</p>
                     </div>
-                    <div style="padding: 1rem; background: #2C2C3C; border-radius: 8px; border: 1px solid #3C3C4C;">
-                        <h3 style="color: #E94560;">🗺️ Geospatial Data</h3>
-                        <p style="color: #9E9E9E;">Advanced mapping integration</p>
+                    <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
+                        <h3>🗺️ Geospatial Data</h3>
+                        <p>Advanced mapping integration</p>
                     </div>
-                    <div style="padding: 1rem; background: #2C2C3C; border-radius: 8px; border: 1px solid #3C3C4C;">
-                        <h3 style="color: #E94560;">📊 Data Processing</h3>
-                        <p style="color: #9E9E9E;">Environmental monitoring</p>
+                    <div style="padding: 1rem; background: #f8fafc; border-radius: 8px;">
+                        <h3>📊 Data Processing</h3>
+                        <p>Environmental monitoring</p>
                     </div>
                 </div>
             </div>
