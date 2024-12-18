@@ -172,13 +172,7 @@ def route_section():
     st.markdown('</div>', unsafe_allow_html=True)
 
 def main():
-    # Header Section with animation
-    st.markdown("""
-        <div class="header-container">
-            <div class="header-title">Sahayta.ai - Smart Relief</div>
-            <div class="header-subtitle">Transforming Disaster Response Through AI</div>
-        </div>
-    """, unsafe_allow_html=True)
+ 
     
     st.divider()
 
