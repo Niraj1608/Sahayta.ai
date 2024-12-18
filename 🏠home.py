@@ -1,282 +1,254 @@
 import streamlit as st
-import requests
-import pydeck as pdk
-import os
-from datetime import datetime
-import logging
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Page Configuration
 st.set_page_config(
-    page_title="Sahayta.ai - Wildfire Risk Monitoring",
-    page_icon="🔥",
+    page_title="Sahayta.ai - Home",
+    page_icon="🏠",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.example.com',
+        'Report a bug': 'https://www.example.com',
+        'About': 'https://www.example.com'
+    }
 )
 
-# Custom CSS for enhanced UI
-def load_custom_css():
-    st.markdown("""
+# CSS Styling for Dark Mode
+st.markdown("""
     <style>
     /* Main container styling */
     .main > div {
         padding: 1.5rem;
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
         font-family: 'Inter', sans-serif;
-    }
-    
-    /* Modern card styling */
-    .stCard {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease;
-    }
-    
-    .stCard:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Dynamic gradient header */
-    .header-container {
-        background: linear-gradient(135deg, #ff6b6b, #ff4757);
         color: white;
-        padding: 2rem;
+    }
+    
+    /* Hero section styling */
+    .hero-container {
+        background: linear-gradient(135deg, #005C97, #363795);
+        color: white;
+        padding: 4rem 2rem;
         border-radius: 15px;
         text-align: center;
         margin-bottom: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
     
-    .header-title {
-        font-size: 3rem;
+    .hero-title {
+        font-size: 3.5rem;
         font-weight: 700;
-        letter-spacing: -1px;
+        margin-bottom: 1rem;
+        animation: fadeInDown 0.8s ease-out;
     }
     
-    .header-subtitle {
-        font-size: 1.2rem;
+    .hero-subtitle {
+        font-size: 1.4rem;
         opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto;
+        animation: fadeInUp 0.8s ease-out;
     }
     
-    /* Responsive metric cards */
-    .metric-container {
-        background-color: #f9fafb;
-        border-radius: 10px;
-        padding: 1rem;
+    /* Features section styling */
+    .features-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .feature-card {
+        background: #1e2127;
+        padding: 2rem;
+        border-radius: 15px;
         text-align: center;
-        transition: transform 0.2s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
-    .metric-container:hover {
-        transform: scale(1.05);
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
     
-    .metric-label {
-        color: #6b7280;
-        font-size: 0.9rem;
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #00B4DB;
+    }
+    
+    .feature-title {
+        font-size: 1.3rem;
+        font-weight: 600;
         margin-bottom: 0.5rem;
     }
     
-    .metric-value {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #ff4757;
+    /* Mission section styling */
+    .mission-section {
+        background: linear-gradient(135deg, #363795, #005C97);
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        margin-top: 2rem;
+        text-align: center;
     }
     
-    /* Responsive button styling */
-    .stButton>button {
-        background: linear-gradient(135deg, #ff6b6b, #ff4757);
-        color: white !important;
-        border: none;
+    .mission-title {
+        font-size: 2.5rem;
+        color: #00B4DB;
+        margin-bottom: 1rem;
+    }
+    
+    .mission-description {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    /* Key Technologies Section */
+    .tech-section {
+        background: #1e2127;
+        padding: 3rem 2rem;
+        border-radius: 15px;
+        margin-top: 2rem;
+        text-align: center;
+    }
+    
+    .tech-title {
+        font-size: 2.5rem;
+        color: #00B4DB;
+        margin-bottom: 1.5rem;
+    }
+    
+    .tech-cards {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .tech-card {
+        background: #2b2d34;
+        padding: 1rem 2rem;
         border-radius: 10px;
-        padding: 0.75rem 1.5rem;
-        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     
-    .stButton>button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    .tech-card h3 {
+        color: #00B4DB;
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
     </style>
-    """, unsafe_allow_html=True)
-
-# Utility Functions for API Calls
-def get_weather(city_name):
-    try:
-        api_key = st.secrets.get("OPENWEATHER_API_KEY")
-        if not api_key:
-            st.error("Weather API key not configured")
-            return None
-        
-        base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric"
-        response = requests.get(base_url, timeout=10)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Weather API error: {e}")
-        return None
-
-def get_coordinates(city_name):
-    try:
-        base_url = f"https://nominatim.openstreetmap.org/search?q={city_name}&format=json&limit=1"
-        headers = {'User-Agent': 'SahaytaAI/1.0'}
-        response = requests.get(base_url, headers=headers, timeout=10)
-        response.raise_for_status()
-        data = response.json()
-        
-        if data:
-            return float(data[0]['lat']), float(data[0]['lon'])
-        return None, None
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Geocoding API error: {e}")
-        return None, None
-
-def generate_route_map(start_coords, end_coords):
-    if not start_coords or not end_coords:
-        return None
-    
-    layers = [
-        pdk.Layer(
-            "ScatterplotLayer",
-            data=[{"position": [start_coords[1], start_coords[0]], "color": [46, 204, 113]}],
-            get_position="position",
-            get_color="color",
-            radius_scale=250,
-        ),
-        pdk.Layer(
-            "LineLayer",
-            data=[{
-                "start_lat": start_coords[0],
-                "start_lon": start_coords[1],
-                "end_lat": end_coords[0],
-                "end_lon": end_coords[1],
-            }],
-            get_source_position=["start_lon", "start_lat"],
-            get_target_position=["end_lon", "end_lat"],
-            get_color=[231, 76, 60],
-            width_scale=3,
-        ),
-        pdk.Layer(
-            "ScatterplotLayer",
-            data=[{"position": [end_coords[1], end_coords[0]], "color": [231, 76, 60]}],
-            get_position="position",
-            get_color="color",
-            radius_scale=250,
-        )
-    ]
-
-    view_state = pdk.ViewState(
-        latitude=(start_coords[0] + end_coords[0]) / 2,
-        longitude=(start_coords[1] + end_coords[1]) / 2,
-        zoom=6,
-        pitch=40
-    )
-
-    return pdk.Deck(layers=layers, initial_view_state=view_state, map_style="mapbox://styles/mapbox/light-v10")
+""", unsafe_allow_html=True)
 
 def main():
-    # Load custom CSS
-    load_custom_css()
-
-    # Header
+    # Hero Section
     st.markdown("""
-    <div class="header-container">
-        <div class="header-title">Sahayta.ai 🔥</div>
-        <div class="header-subtitle">Intelligent Disaster Response and Risk Management</div>
+    <div class="hero-container">
+        <div class="hero-title">Sahayta.ai</div>
+        <div class="hero-subtitle">
+            Empowering Disaster Response with Artificial Intelligence
+        </div>
     </div>
     """, unsafe_allow_html=True)
-
-    # Application Overview
-    st.markdown("""
-    ### 🚨 Emergency Preparedness Platform
     
-    Sahayta.ai is an advanced disaster response solution leveraging AI and real-time data to:
-    - 🌍 Monitor environmental risks
-    - 🚒 Plan emergency routes
-    - 📊 Provide actionable insights
-    """)
-
-    # Columns for Weather and Route Planning
-    col1, col2 = st.columns([1, 1])
-
-    with col1:
-        st.markdown('<div class="stCard">', unsafe_allow_html=True)
-        st.subheader("🌤️ Weather Monitor")
-        
-        city_name = st.text_input("Enter City Name", placeholder="e.g., New Delhi")
-        
-        if st.button("Get Weather Details"):
-            with st.spinner("Fetching weather data..."):
-                weather_data = get_weather(city_name)
-                
-                if weather_data:
-                    st.success(f"Current Weather in {city_name}")
-                    
-                    col_temp, col_humid = st.columns(2)
-                    with col_temp:
-                        st.markdown(f"""
-                        <div class="metric-container">
-                            <div class="metric-label">Temperature</div>
-                            <div class="metric-value">{weather_data['main']['temp']}°C</div>
-                        </div>
-                        """, unsafe_allow_html=True)
-                    
-                    with col_humid:
-                        st.markdown(f"""
-                        <div class="metric-container">
-                            <div class="metric-label">Humidity</div>
-                            <div class="metric-value">{weather_data['main']['humidity']}%</div>
-                        </div>
-                        """, unsafe_allow_html=True)
-                    
-                    st.info(f"Conditions: {weather_data['weather'][0]['description'].capitalize()}")
-                else:
-                    st.error("Unable to retrieve weather data")
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    with col2:
-        st.markdown('<div class="stCard">', unsafe_allow_html=True)
-        st.subheader("🗺️ Emergency Route Planner")
-        
-        start_location = st.text_input("Start Location", placeholder="e.g., Mumbai")
-        destination_location = st.text_input("Destination", placeholder="e.g., Pune")
-        
-        if st.button("Plan Emergency Route"):
-            with st.spinner("Calculating route..."):
-                start_coords = get_coordinates(start_location)
-                end_coords = get_coordinates(destination_location)
-                
-                if start_coords[0] and end_coords[0]:
-                    route_map = generate_route_map(start_coords, end_coords)
-                    st.success("Emergency Route Generated")
-                    st.pydeck_chart(route_map)
-                    
-                    st.markdown(f"""
-                    **Route Details:**
-                    - Start: {start_location} (Lat: {start_coords[0]:.4f}, Lon: {start_coords[1]:.4f})
-                    - End: {destination_location} (Lat: {end_coords[0]:.4f}, Lon: {end_coords[1]:.4f})
-                    """)
-                else:
-                    st.error("Unable to locate one or both locations")
-        
-        st.markdown('</div>', unsafe_allow_html=True)
-
-    # Footer with tips and resources
+    # Features Section
     st.markdown("""
-    ## 💡 Disaster Preparedness Tips
+    <div class="features-container">
+        <div class="feature-card">
+            <div class="feature-icon">🛰️</div>
+            <div class="feature-title">Satellite Imagery Analysis</div>
+            <p>Advanced AI models process satellite data to detect potential disaster zones.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <div class="feature-title">Real-Time Monitoring</div>
+            <p>Continuous tracking of environmental conditions and potential risks.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🚨</div>
+            <div class="feature-title">Early Warning System</div>
+            <p>Proactive alerts to help communities prepare and respond quickly.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">Data-Driven Insights</div>
+            <p>Comprehensive analysis to support critical decision-making.</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    1. **Stay Informed**: Monitor local weather and emergency channels
-    2. **Have an Emergency Kit**: Include water, first-aid, and essential supplies
-    3. **Create an Evacuation Plan**: Know multiple routes and meeting points
-    4. **Stay Connected**: Keep communication devices charged
-    """)
+    # Mission Section
+    st.markdown("""
+    <div class="mission-section">
+        <div class="mission-title">Our Mission</div>
+        <div class="mission-description">
+            At Sahayta.ai, we are committed to revolutionizing disaster response through cutting-edge 
+            artificial intelligence. Our mission is to provide timely, accurate, and actionable insights 
+            that can save lives, protect communities, and minimize the impact of natural disasters.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Key Technologies Section
+    st.markdown("""
+    <div class="tech-section">
+        <div class="tech-title">Key Technologies</div>
+        <div class="tech-cards">
+            <div class="tech-card">
+                <h3>Machine Learning</h3>
+                <p>Advanced predictive models</p>
+            </div>
+            <div class="tech-card">
+                <h3>Satellite Analysis</h3>
+                <p>High-resolution imagery processing</p>
+            </div>
+            <div class="tech-card">
+                <h3>Real-Time Data</h3>
+                <p>Continuous environmental monitoring</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Call to Action
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #005C97, #363795); color: white; padding: 3rem 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+        <h2 style="margin-bottom: 1rem;">Join Our Mission</h2>
+        <p style="max-width: 600px; margin: 0 auto 1.5rem; font-size: 1.1rem;">
+            Together, we can build a more resilient world. Explore our tools, 
+            learn about our technology, and help us make a difference.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="#" style="background: #00B4DB; color: #1e2127; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: bold;">Learn More</a>
+            <a href="#" style="background: transparent; color: #00B4DB; padding: 0.8rem 1.5rem; text-decoration: none; border: 2px solid #00B4DB; border-radius: 8px; font-weight: bold;">Contact Us</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
