@@ -194,11 +194,7 @@ def main():
             <div class="feature-title">Early Warning System</div>
             <p>Proactive alerts to help communities prepare and respond quickly.</p>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <div class="feature-title">Data-Driven Insights</div>
-            <p>Comprehensive analysis to support critical decision-making.</p>
-        </div>
+  
     </div>
     """, unsafe_allow_html=True)
     
