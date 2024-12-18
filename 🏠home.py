@@ -214,26 +214,7 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Key Technologies Section
-    st.markdown("""
-    <div class="tech-section">
-        <div class="tech-title">Key Technologies</div>
-        <div class="tech-cards">
-            <div class="tech-card">
-                <h3>Machine Learning</h3>
-                <p>Advanced predictive models</p>
-            </div>
-            <div class="tech-card">
-                <h3>Satellite Analysis</h3>
-                <p>High-resolution imagery processing</p>
-            </div>
-            <div class="tech-card">
-                <h3>Real-Time Data</h3>
-                <p>Continuous environmental monitoring</p>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+ 
     
     # Call to Action
     st.markdown("""
