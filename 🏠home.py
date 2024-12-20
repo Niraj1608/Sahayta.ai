@@ -1,31 +1,27 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
-# Page Configuration
-st.set_page_config(
-    page_title="Sahayta.ai - Home",
-    page_icon="🏠",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.example.com',
-        'Report a bug': 'https://www.example.com',
-        'About': 'https://www.example.com'
-    }
-)
-
-# CSS Styling for Dark Mode
-st.markdown("""
+def local_css():
+    """
+    Define custom CSS for the application with responsive design and accessibility improvements
+    """
+    st.markdown("""
     <style>
-    /* Main container styling */
-    .main > div {
-        padding: 1.5rem;
-        max-width: 1200px;
-        margin: 0 auto;
+    /* Global Styling */
+    body {
         font-family: 'Inter', sans-serif;
+        background-color: #1e2127;
         color: white;
     }
     
-    /* Hero section styling */
+    /* Responsive Container */
+    .main > div {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+    
+    /* Hero Section */
     .hero-container {
         background: linear-gradient(135deg, #005C97, #363795);
         color: white;
@@ -51,132 +47,117 @@ st.markdown("""
         animation: fadeInUp 0.8s ease-out;
     }
     
-    /* Features section styling */
+    /* Features Section */
     .features-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 2rem;
     }
     
     .feature-card {
-        background: #1e2127;
-        padding: 2rem;
-        border-radius: 15px;
+        flex: 1;
+        background: rgba(54, 55, 149, 0.7);
+        border-radius: 10px;
+        padding: 1.5rem;
         text-align: center;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease;
     }
     
     .feature-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
     
     .feature-icon {
         font-size: 3rem;
         margin-bottom: 1rem;
-        color: #00B4DB;
     }
     
-    .feature-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .features-container {
+            flex-direction: column;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
     }
     
-    /* Mission section styling */
+    /* Mission Section */
     .mission-section {
-        background: linear-gradient(135deg, #363795, #005C97);
-        padding: 3rem 2rem;
+        background: rgba(54, 55, 149, 0.3);
         border-radius: 15px;
-        margin-top: 2rem;
-        text-align: center;
+        padding: 2rem;
+        margin-bottom: 2rem;
     }
     
     .mission-title {
-        font-size: 2.5rem;
-        color: #00B4DB;
+        font-size: 2rem;
+        text-align: center;
         margin-bottom: 1rem;
+        color: #00B4DB;
     }
     
     .mission-description {
+        text-align: center;
         max-width: 800px;
         margin: 0 auto;
-        font-size: 1.1rem;
-        line-height: 1.6;
     }
     
-    /* Key Technologies Section */
-    .tech-section {
-        background: #1e2127;
+    /* Call to Action */
+    .cta-section {
+        background: linear-gradient(135deg, #005C97, #363795);
+        color: white;
         padding: 3rem 2rem;
         border-radius: 15px;
-        margin-top: 2rem;
         text-align: center;
     }
     
-    .tech-title {
-        font-size: 2.5rem;
-        color: #00B4DB;
-        margin-bottom: 1.5rem;
-    }
-    
-    .tech-cards {
+    .cta-buttons {
         display: flex;
         justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
+        gap: 1rem;
     }
     
-    .tech-card {
-        background: #2b2d34;
-        padding: 1rem 2rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: all 0.3s ease;
     }
     
-    .tech-card h3 {
+    .cta-primary {
+        background: #00B4DB;
+        color: #1e2127;
+    }
+    
+    .cta-secondary {
+        background: transparent;
         color: #00B4DB;
-    }
-    
-    /* Animations */
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        border: 2px solid #00B4DB;
     }
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-def main():
-    # Hero Section
+def render_hero_section():
+    """Render the hero section of the homepage"""
     st.markdown("""
-    <div class="hero-container">
+    <div class="hero-container" aria-label="Sahayta.ai Homepage">
         <div class="hero-title">Sahayta.ai</div>
         <div class="hero-subtitle">
             Empowering Disaster Response with Artificial Intelligence
         </div>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Features Section
+
+def render_features_section():
+    """Render the features section"""
     st.markdown("""
     <div class="features-container">
         <div class="feature-card">
@@ -194,11 +175,11 @@ def main():
             <div class="feature-title">Early Warning System</div>
             <p>Proactive alerts to help communities prepare and respond quickly.</p>
         </div>
-  
     </div>
     """, unsafe_allow_html=True)
-    
-    # Mission Section
+
+def render_mission_section():
+    """Render the mission section"""
     st.markdown("""
     <div class="mission-section">
         <div class="mission-title">Our Mission</div>
@@ -209,23 +190,165 @@ def main():
         </div>
     </div>
     """, unsafe_allow_html=True)
+
+
+
+
+import streamlit.components.v1 as components
+
+def render_technology_architecture():
+    """Render the updated technology architecture SVG"""
     
- 
-    
-    # Call to Action
+    # Title and introductory text in Streamlit's markdown format
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #005C97, #363795); color: white; padding: 3rem 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+        <div style="display: flex; justify-content: center; align-items: center; margin: 2rem 0;">
+            <div style="width: 100%; max-width: 1000px; background: #1e2127; padding: 1.5rem; border-radius: 15px; text-align: center;">
+                <p style="color: #00B4DB; font-size: 24px; font-weight: bold; margin: 0;">Sahayta.ai Architecture</p>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
+
+    # SVG content with centered positioning
+    components.html("""
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <div style="width: 880px; margin: 0 auto;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 580" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto;">
+                <!-- Background -->
+                <rect width="880" height="580" fill="#1e2127" rx="20"/>
+                
+                <!-- Problem Boxes -->
+                <g transform="translate(90, 50)">
+                    <!-- [Rest of the SVG content remains the same] -->
+                    <!-- Problem 1 -->
+                <rect x="0" y="0" width="220" height="100" rx="10" fill="#363795" opacity="0.9"/>
+                <text x="110" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="sans-serif">Problem 1:</text>
+                <text x="110" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Inaccurate Resource</text>
+                <text x="110" y="75" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Allocation </text>
+                
+                <!-- Problem 2 -->
+                <rect x="240" y="0" width="220" height="100" rx="10" fill="#363795" opacity="0.9"/>
+                <text x="350" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="sans-serif">Problem 2:</text>
+                <text x="350" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">15+ Minutes Delay in</text>
+                <text x="350" y="75" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Disaster Information </text>
+                
+                <!-- Problem 3 -->
+                <rect x="480" y="0" width="220" height="100" rx="10" fill="#363795" opacity="0.9"/>
+                <text x="590" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="sans-serif">Problem 3:</text>
+                <text x="590" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Limited Situational</text>
+                <text x="590" y="75" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Awareness </text>
+                </g>
+
+               
+                <!-- Solution Architecture -->
+                <g transform="translate(40, 170)">
+                    <!-- Input Sources -->
+                    <g transform="translate(0, 40)">
+                        <rect x="20" y="0" width="160" height="60" rx="8" fill="#005C97"/>
+                        <text x="100" y="25" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Satellite Imagery</text>
+                        <text x="100" y="45" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(NOAA-20 VIIRS) 🛰️</text>
+
+                        <rect x="20" y="80" width="160" height="60" rx="8" fill="#005C97"/>
+                        <text x="100" y="105" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Drone Feed</text>
+                        <text x="100" y="125" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(Aerial Imagery) 📷</text>
+
+                        <rect x="20" y="160" width="160" height="60" rx="8" fill="#005C97"/>
+                        <text x="100" y="185" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Flood Data</text>
+                        <text x="100" y="205" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(Semantic Maps) 🗺️</text>
+
+                        <rect x="20" y="240" width="160" height="60" rx="8" fill="#005C97"/>
+                        <text x="100" y="265" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">API Integrations</text>
+                        <text x="100" y="285" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(Weather & Routes) 🌐</text>
+                    </g>
+                    
+                    <!-- AI Core -->
+                    <g transform="translate(280, 40)">
+                        <rect x="0" y="0" width="240" height="300" rx="10" fill="#00B4DB"/>
+                        <text x="120" y="35" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="sans-serif">AI Core</text>
+                        <text x="120" y="70" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Wildfire Detection 🔥</text>
+                        <text x="120" y="100" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Flood Detection 🌊</text>
+                        <text x="120" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Flood Mask &amp; Segmentation 🎯</text>
+                        <text x="120" y="160" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Weather Prediction ⛈️</text>
+                        <text x="120" y="190" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Route Optimization 🛣️</text>
+                    </g>
+                    
+                    <!-- Output -->
+                    <g transform="translate(620, 40)">
+                        <rect x="0" y="0" width="160" height="300" rx="10" fill="#005C97"/>
+                        <text x="80" y="35" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="sans-serif">Services</text>
+                        <text x="80" y="70" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Real-time Alerts ⚡</text>
+                        <text x="80" y="100" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Disaster Maps 📍</text>
+                        <text x="80" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Optimal Routes 🛣️</text>
+                        <text x="80" y="160" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Weather Updates 🌡️</text>
+                        <text x="80" y="190" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Resource Plans 📋</text>
+                    </g>
+                    
+                    <!-- Arrows -->
+                    <g>
+                        <line x1="180" y1="70" x2="280" y2="70" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <line x1="180" y1="150" x2="280" y2="150" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <line x1="180" y1="230" x2="280" y2="230" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <line x1="180" y1="310" x2="280" y2="310" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <line x1="520" y1="180" x2="620" y2="180" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    </g>
+                </g>
+
+                <!-- Arrow Marker -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#00B4DB"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    """ ,height=650)
+
+def render_cta_section():
+    """Render the call to action section"""
+    st.markdown("""
+    <div class="cta-section">
         <h2 style="margin-bottom: 1rem;">Join Our Mission</h2>
         <p style="max-width: 600px; margin: 0 auto 1.5rem; font-size: 1.1rem;">
             Together, we can build a more resilient world. Explore our tools, 
             learn about our technology, and help us make a difference.
         </p>
-        <div style="display: flex; justify-content: center; gap: 1rem;">
-            <a href="#" style="background: #00B4DB; color: #1e2127; padding: 0.8rem 1.5rem; text-decoration: none; border-radius: 8px; font-weight: bold;">Learn More</a>
-            <a href="#" style="background: transparent; color: #00B4DB; padding: 0.8rem 1.5rem; text-decoration: none; border: 2px solid #00B4DB; border-radius: 8px; font-weight: bold;">Contact Us</a>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button cta-primary" aria-label="Learn More About Sahayta.ai">Learn More</a>
+            <a href="#" class="cta-button cta-secondary" aria-label="Contact Sahayta.ai">Contact Us</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
+
+def main():
+    """Main application entry point"""
+    # Page Configuration
+    st.set_page_config(
+        page_title="Sahayta.ai - Home",
+        page_icon="🏠",
+        layout="wide",
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://www.example.com',
+            'Report a bug': 'https://www.example.com',
+            'About': 'https://www.example.com'
+        }
+    )
+
+    # Apply custom CSS
+    local_css()
+
+    try:
+        # Render Page Sections
+        render_hero_section()
+        render_features_section()
+        render_mission_section()
+        render_technology_architecture()
+        render_cta_section()
+
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+        st.error("Please refresh the page or contact support.")
 
 if __name__ == "__main__":
     main()
