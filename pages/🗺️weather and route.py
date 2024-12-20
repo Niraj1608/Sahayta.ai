@@ -10,13 +10,56 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS Styling (using the same styling from the previous implementation)
+# CSS Styling
 st.markdown("""
     <style>
-    /* [Previous CSS remains the same as in the original file] */
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    .footer {
+        background: #1e2127;
+        padding: 2rem;
+        border-radius: 15px;
+        margin-top: 2rem;
+        color: #ffffff;
+    }
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    .footer-card {
+        background: #2a2d35;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .footer-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .footer-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #00B4DB;
+    }
+    .footer-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .footer-text {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #b3b3b3;
+    }
     </style>
 """, unsafe_allow_html=True)
 
+# Helper Functions
 def get_weather(city_name):
     """Fetch weather data for a given city."""
     api_key = st.secrets["weather"]["api_key"]
@@ -38,8 +81,6 @@ def get_coordinates(city_name):
 def generate_map(start_coords, end_coords=None):
     """Generate a map with route and location markers."""
     layers = []
-    
-    # Start location marker
     layers.append(
         pdk.Layer(
             "ScatterplotLayer",
@@ -50,9 +91,7 @@ def generate_map(start_coords, end_coords=None):
             pickable=True,
         )
     )
-    
     if end_coords:
-        # Route layer
         layers.append(
             pdk.Layer(
                 "LineLayer",
@@ -69,7 +108,6 @@ def generate_map(start_coords, end_coords=None):
                 width_min_pixels=3,
             )
         )
-        # End location marker
         layers.append(
             pdk.Layer(
                 "ScatterplotLayer",
@@ -80,14 +118,12 @@ def generate_map(start_coords, end_coords=None):
                 pickable=True,
             )
         )
-
     view_state = pdk.ViewState(
         latitude=start_coords[0],
         longitude=start_coords[1],
         zoom=10,
         pitch=45,
     )
-    
     return pdk.Deck(
         layers=layers,
         initial_view_state=view_state,
@@ -95,116 +131,68 @@ def generate_map(start_coords, end_coords=None):
         tooltip={"text": "Location"},
     )
 
+# Main Sections
 def weather_section():
-    """Streamlit section for weather monitoring."""
-    st.markdown('<div class="stCard">', unsafe_allow_html=True)
     st.subheader("📍 Weather Monitor")
-    city_name = st.text_input("Enter City Name:", placeholder="e.g., New Delhi", key="weather_city")
-    
-    if st.button("Get Weather Updates", key="weather_button"):
+    city_name = st.text_input("Enter City Name:", placeholder="e.g., New Delhi")
+    if st.button("Get Weather Updates"):
         if city_name:
-            with st.spinner('Fetching weather data...'):
-                weather_data = get_weather(city_name)
-                if weather_data:
-                    st.success(f"Current Weather in {city_name}")
-                    
-                    # Weather metrics in a grid
-                    col1a, col1b = st.columns(2)
-                    with col1a:
-                        st.markdown(f"""
-                            <div class="metric-container">
-                                <div class="metric-label">Temperature</div>
-                                <div class="metric-value">{weather_data['main']['temp']}°C</div>
-                            </div>
-                        """, unsafe_allow_html=True)
-                        
-                        st.markdown(f"""
-                            <div class="metric-container">
-                                <div class="metric-label">Humidity</div>
-                                <div class="metric-value">{weather_data['main']['humidity']}%</div>
-                            </div>
-                        """, unsafe_allow_html=True)
-                    
-                    with col1b:
-                        st.markdown(f"""
-                            <div class="metric-container">
-                                <div class="metric-label">Wind Speed</div>
-                                <div class="metric-value">{weather_data['wind']['speed']} m/s</div>
-                            </div>
-                        """, unsafe_allow_html=True)
-                        
-                        st.markdown(f"""
-                            <div class="metric-container">
-                                <div class="metric-label">Conditions</div>
-                                <div class="metric-value">{weather_data['weather'][0]['description'].capitalize()}</div>
-                            </div>
-                        """, unsafe_allow_html=True)
-                else:
-                    st.error("Unable to fetch weather data. Please check the city name.")
-    st.markdown('</div>', unsafe_allow_html=True)
+            weather_data = get_weather(city_name)
+            if weather_data:
+                st.success(f"Current Weather in {city_name}")
+                st.write(f"Temperature: {weather_data['main']['temp']}°C")
+                st.write(f"Humidity: {weather_data['main']['humidity']}%")
+                st.write(f"Conditions: {weather_data['weather'][0]['description'].capitalize()}")
+            else:
+                st.error("Unable to fetch weather data. Please check the city name.")
 
 def route_section():
-    """Streamlit section for emergency route planning."""
-    st.markdown('<div class="stCard">', unsafe_allow_html=True)
     st.subheader("🗺️ Emergency Route Planner")
-    
-    start_location = st.text_input("Start Location:", placeholder="e.g., Mumbai", key="start_loc")
-    destination_location = st.text_input("Destination:", placeholder="e.g., Pune", key="dest_loc")
-    
-    if st.button("Plan Emergency Route", key="route_button"):
+    start_location = st.text_input("Start Location:", placeholder="e.g., Mumbai")
+    destination_location = st.text_input("Destination:", placeholder="e.g., Pune")
+    if st.button("Plan Emergency Route"):
         if start_location and destination_location:
-            with st.spinner('Planning route...'):
-                start_coords = get_coordinates(start_location)
-                end_coords = get_coordinates(destination_location)
-                if start_coords and end_coords:
-                    st.success(f"Emergency Route: {start_location} → {destination_location}")
-                    map_deck = generate_map(start_coords, end_coords)
-                    st.pydeck_chart(map_deck)
-                    
-                    st.info(f"""
-                    📍 Start: {start_location} (Lat: {start_coords[0]:.4f}, Lon: {start_coords[1]:.4f})
-                    🎯 End: {destination_location} (Lat: {end_coords[0]:.4f}, Lon: {end_coords[1]:.4f})
-                    """)
-                else:
-                    st.error("Could not locate one or both locations. Please check the names.")
-        else:
-            st.warning("Please enter both start and destination locations.")
-    st.markdown('</div>', unsafe_allow_html=True)
+            start_coords = get_coordinates(start_location)
+            end_coords = get_coordinates(destination_location)
+            if start_coords and end_coords:
+                st.success(f"Emergency Route: {start_location} → {destination_location}")
+                st.pydeck_chart(generate_map(start_coords, end_coords))
+            else:
+                st.error("Could not locate one or both locations. Please check the names.")
 
-def main():
- 
-    
-    st.divider()
-
-    # Create tabs for different sections
-    tab1, tab2 = st.tabs(["🌦️ Weather Monitor", "🗺️ Route Planner"])
-    
-    with tab1:
-        weather_section()
-    
-    with tab2:
-        route_section()
-
-    # Footer with quick tips
+# Footer
+def footer_section():
     st.markdown("""
         <div class="footer">
-            <h3>💡 Quick Tips</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                <div style="padding: 1rem; background: white; border-radius: 8px;">
-                    <h4>📌 Location Tips</h4>
-                    <p>Use specific city names for better accuracy</p>
+            <h3 style="text-align: left;">💡 Quick Tips</h3>
+            <div class="footer-container">
+                <div class="footer-card">
+                    <div class="footer-icon">📌</div>
+                    <div class="footer-title">Location Tips</div>
+                    <div class="footer-text">Use specific city names for better accuracy.</div>
                 </div>
-                <div style="padding: 1rem; background: white; border-radius: 8px;">
-                    <h4>🌤️ Weather Updates</h4>
-                    <p>Check conditions before planning routes</p>
+                <div class="footer-card">
+                    <div class="footer-icon">🌤️</div>
+                    <div class="footer-title">Weather Updates</div>
+                    <div class="footer-text">Check conditions before planning routes.</div>
                 </div>
-                <div style="padding: 1rem; background: white; border-radius: 8px;">
-                    <h4>🔄 Regular Updates</h4>
-                    <p>Data refreshes every 30 minutes</p>
+                <div class="footer-card">
+                    <div class="footer-icon">🔄</div>
+                    <div class="footer-title">Regular Updates</div>
+                    <div class="footer-text">Data refreshes every 30 minutes.</div>
                 </div>
             </div>
         </div>
     """, unsafe_allow_html=True)
+
+# Main App
+def main():
+    tab1, tab2 = st.tabs(["🌦️ Weather Monitor", "🗺️ Route Planner"])
+    with tab1:
+        weather_section()
+    with tab2:
+        route_section()
+    footer_section()
 
 if __name__ == "__main__":
     main()
