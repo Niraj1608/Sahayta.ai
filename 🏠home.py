@@ -194,8 +194,6 @@ def render_mission_section():
 
 
 
-import streamlit.components.v1 as components
-
 def render_technology_architecture():
     """Render the updated technology architecture SVG"""
     
@@ -314,8 +312,8 @@ def render_cta_section():
             learn about our technology, and help us make a difference.
         </p>
         <div class="cta-buttons">
-            <a href="#" class="cta-button cta-primary" aria-label="Learn More About Sahayta.ai">Learn More</a>
-            <a href="#" class="cta-button cta-secondary" aria-label="Contact Sahayta.ai">Contact Us</a>
+            <a href="https://github.com/Niraj1608/Sahayta.ai/blob/main/README.md" class="cta-button cta-primary" aria-label="Learn More About Sahayta.ai">Learn More</a>
+            <a href="https://www.linkedin.com/in/niraj-parmar-531b5523a/" class="cta-button cta-secondary" aria-label="Contact Sahayta.ai">Contact Us</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
