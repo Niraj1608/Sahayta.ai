@@ -53,7 +53,7 @@ Sahayta.ai is a comprehensive disaster management solution that combines multipl
 
 ## Technical Architecture & ML Pipeline
 
-![Sahayta.ai ML Architecture](https://gist.githubusercontent.com/Niraj1608/9c489d70166c180644df36fb92151dc3/raw/bea955bd9e45d1a27b8b633a8ff75729b4287963/mlmodel.svg)
+![Sahayta.ai ML Architecture](https://gist.githubusercontent.com/Niraj1608/8d1fc288c82a0f1bf69c91369ac9879e/raw/df6629e4b216b2bd19442b960449f42fd2668d46/arc1.svg)
 
 Our intelligent disaster response system leverages three specialized ML models working in parallel:
 
